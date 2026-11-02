@@ -38,6 +38,15 @@
     var embed = document.createElement('script');
     embed.src = 'https://link.msgsndr.com/js/form_embed.js';
     document.body.appendChild(embed);
+    // form_embed.js hides the iframe until the widget reports it has loaded. If that
+    // message never arrives, show the calendar anyway rather than leave a blank box.
+    setTimeout(function () {
+      if (frame.style.visibility === 'hidden') {
+        ['opacity', 'visibility', 'pointer-events', 'left', 'position'].forEach(function (p) {
+          frame.style.removeProperty(p);
+        });
+      }
+    }, 4000);
   }
 
   // ---- CTA clicks ----

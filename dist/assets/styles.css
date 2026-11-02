@@ -73,7 +73,7 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .video-empty::before { display: none; }
 
 /* calendar */
-.book { scroll-margin-top: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.12); }
+.book { position: relative; min-height: 720px; scroll-margin-top: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.12); }
 .ghl-calendar { display: block; width: 100%; min-height: 720px; border: 0; overflow: hidden; }
 .calendar-missing { display: grid; place-items: center; min-height: 720px; padding: 16px; text-align: center; color: var(--muted); font-size: 15px; }
 
