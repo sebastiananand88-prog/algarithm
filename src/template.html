@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page_title}}</title>
+  <meta name="description" content="{{page_description}}">
+  <meta property="og:title" content="{{page_title}}">
+  <meta property="og:description" content="{{page_description}}">
+  <meta name="theme-color" content="#e4e2dd">
+  <link rel="icon" href="{{assets}}/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{assets}}/styles.css">
+  <script>window.SITE = {{config_json}};</script>
+  <!-- Meta Pixel: loads only when meta_pixel_id is set in content/shared.json -->
+  <script>
+    if (window.SITE.pixelId) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.SITE.pixelId);
+      fbq('track', 'PageView');
+    }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <img class="logo" src="{{assets}}/img/logo.png" alt="{{brand}}" width="820" height="360">
+</header>
+
+<main>
+  <section class="hero">
+    <h1>{{headline}}</h1>
+    <h2 class="subhead">{{subhead}}</h2>
+    <p class="sub">{{sub}}</p>
+  </section>
+
+  {{vsl}}
+
+  <section class="book" id="book">
+    <iframe id="ghl-calendar" class="ghl-calendar" title="Book a call" scrolling="no" data-src="{{calendar_url}}"></iframe>
+    <div class="calendar-missing" hidden>Calendar goes here: set calendar_url in content/{{slug}}.json</div>
+  </section>
+
+  <section class="proof">
+    <h2>{{proof_title}}</h2>
+    <div class="cases">{{cases}}</div>
+  </section>
+
+  <section class="final">
+    <h2>Become the next success story:</h2>
+    <a class="btn" href="#book" data-cta="final">{{cta}} <span aria-hidden="true">→</span></a>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© {{year}} {{brand}} · <a href="{{privacy_url}}">Privacy policy</a></p>
+  <p class="legal">Results shown are from specific clients and are not a guarantee of future performance. This site is not part of the Facebook website or Meta Platforms, Inc.</p>
+</footer>
+
+<a class="sticky-cta btn" href="#book" data-cta="sticky">{{cta}} <span aria-hidden="true">→</span></a>
+
+<script src="{{assets}}/main.js" defer></script>
+</body>
+</html>

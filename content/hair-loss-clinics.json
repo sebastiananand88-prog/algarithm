@@ -1,0 +1,22 @@
+{
+  "slug": "hair-loss-clinics",
+  "calendar_url": "https://api.leadconnectorhq.com/widget/booking/REPLACE",
+  "seo_title": "Algarithm | Book Your 1-on-1 Growth Call",
+  "seo_description": "The proven system hair restoration clinics use to add an extra $50K–$250K+/month. We only take one clinic per area.",
+
+  "claims_placeholder": true,
+  "headline": "Book your 1-on-1 call & get results *unheard of* in the hair restoration space",
+  "subhead": "The Proven System Hair Restoration Clinics Use To Add An Extra $50K–$250K+/Month",
+  "sub": "Book your growth call and we'll show you exactly how to do it in your market. We only take one clinic per area.",
+  "vsl": "",
+
+  "proof_title": "Watch these hair restoration clinic owners break down exactly how they added $50K–$250K+ in extra monthly revenue",
+  "cases": [
+    { "placeholder": true, "name": "Clinic name", "result": "$60k/mo to $210k/mo in 5 months.", "video": "" },
+    { "placeholder": true, "name": "Clinic name", "result": "from 4 to 15 procedures a month in 90 days.", "video": "" },
+    { "placeholder": true, "name": "Clinic name", "result": "$0 from Meta to $120k in a single month.", "video": "" },
+    { "placeholder": true, "name": "Clinic name", "result": "closing 1 in 3 consultations into a procedure.", "video": "" }
+  ],
+
+  "cta": "Book your growth call"
+}

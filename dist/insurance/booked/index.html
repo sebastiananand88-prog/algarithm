@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're booked in | Algarithm</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#e4e2dd">
+  <link rel="icon" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script>window.SITE = {"page": "insurance", "pixelId": ""};</script>
+  <!-- Meta Pixel + Schedule event. GHL redirects here after a booking (set this URL in the calendar's form settings).
+       If GHL appends a contact or appointment ID, it becomes the eventID so a server-side CAPI Schedule with the same ID deduplicates. -->
+  <script>
+    if (window.SITE.pixelId) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.SITE.pixelId);
+      fbq('track', 'PageView');
+      var q = new URLSearchParams(location.search);
+      var id = q.get('appointment_id') || q.get('contact_id') || String(Date.now()) + Math.random().toString(36).slice(2, 8);
+      fbq('track', 'Schedule', { content_name: window.SITE.page }, { eventID: 'schedule_' + id });
+    }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <img class="logo" src="../../assets/img/logo.png" alt="Algarithm" width="820" height="360">
+</header>
+
+<main>
+  <section class="thanks">
+    <h1>You're <em>booked in</em>.</h1>
+    <p>Check your email and texts for the confirmation. We'll come to the call with ideas specific to your market.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Algarithm · <a href="#">Privacy policy</a></p>
+</footer>
+
+</body>
+</html>
