@@ -2,18 +2,18 @@
   "slug": "aesthetic-clinics",
   "calendar_url": "https://api.leadconnectorhq.com/widget/booking/45OiW2Ignt61R8DdWY1i",
   "seo_title": "Algarithm | Book Your 1-on-1 Growth Call",
-  "seo_description": "The proven system med spas use to add an extra $30K–$100K+/month. We only take one med spa per area.",
+  "seo_description": "The proven system aesthetics clinics use to add an extra $30K–$100K+/month. We only take one aesthetics clinic per area.",
 
   "claims_placeholder": true,
-  "headline": "Book your 1-on-1 call & get results *unheard of* in the med spa space",
-  "subhead": "The Proven System Med Spas Use To Add An Extra $30K–$100K+/Month",
-  "sub": "Book your growth call and we'll show you exactly how to do it in your market. We only take one med spa per area.",
+  "headline": "Book your 1-on-1 call & get results *unheard of* in the aesthetics space",
+  "subhead": "The Proven System Aesthetics Clinics Use To Add An Extra $30K–$100K+/Month",
+  "sub": "Book your growth call and we'll show you exactly how to do it in your market. We only take one aesthetics clinic per area.",
   "vsl": "",
 
-  "proof_title": "Watch these med spa owners break down exactly how they added $30K–$100K+ in extra monthly revenue",
+  "proof_title": "Watch these aesthetics clinic owners break down exactly how they added $30K–$100K+ in extra monthly revenue",
   "cases": [
-    { "placeholder": true, "name": "Clinic name", "result": "$40k/mo to $95k/mo in 4 months.", "video": "" },
-    { "placeholder": true, "name": "Clinic name", "result": "from an empty schedule to fully booked in 60 days.", "video": "" },
+    { "name": "Optident", "result": "7 new Invisalign cases from a single Black Friday open day.", "video": "https://www.youtube.com/watch?v=EybnVg3_-xs" },
+    { "name": "Tomas Clinic", "result": "£22,900 in 20 days with TikTok.", "video": "https://www.youtube.com/watch?v=6YeqNEHH0cU" },
     { "placeholder": true, "name": "Clinic name", "result": "$25k/mo to $70k/mo in 6 months.", "video": "" },
     { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
   ],

@@ -144,8 +144,6 @@ def main():
 
     if not shared["meta_pixel_id"]:
         warnings.append("[all] meta_pixel_id is empty — the pixel won't load")
-    if shared["privacy_url"] in ("", "#"):
-        warnings.append("[all] privacy_url not set — Meta requires a privacy policy when you use the pixel")
 
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -154,7 +152,25 @@ def main():
         shutil.copy(SRC / asset, DIST / "assets" / asset)
     shutil.copytree(SRC / "img", DIST / "assets" / "img")
 
-    built = []
+    # Privacy policy, linked from every page footer.
+    if shared["legal_name"] == shared["brand"] or not shared["legal_address"]:
+        warnings.append("[all] privacy policy: set legal_name (registered company name) and legal_address in shared.json")
+    address = f" Our address is {esc(shared['legal_address'])}." if shared["legal_address"] else ""
+    privacy_tokens = {
+        "lang": shared["lang"],
+        "brand": esc(shared["brand"]),
+        "assets": "../assets",
+        "legal_name": esc(shared["legal_name"]),
+        "legal_address": address,
+        "privacy_email": esc(shared["privacy_email"]),
+        "privacy_updated": esc(shared["privacy_updated"]),
+        "year": "2026",
+    }
+    (DIST / "privacy").mkdir()
+    (DIST / "privacy" / "index.html").write_text(
+        fill((SRC / "privacy.html").read_text(), privacy_tokens, "privacy"), encoding="utf-8")
+
+    built = ["dist/privacy/index.html"]
     for path in sorted(CONTENT.glob("*.json")):
         if path.name != "shared.json":
             built.append(build_page(template, booked, shared, json.loads(path.read_text())))

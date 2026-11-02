@@ -38,15 +38,22 @@
     var embed = document.createElement('script');
     embed.src = 'https://link.msgsndr.com/js/form_embed.js';
     document.body.appendChild(embed);
-    // form_embed.js hides the iframe until the widget reports it has loaded. If that
-    // message never arrives, show the calendar anyway rather than leave a blank box.
-    setTimeout(function () {
-      if (frame.style.visibility === 'hidden') {
+    // form_embed.js hides the iframe until the widget reports it has loaded. Keep the
+    // space reserved until then; if that message never arrives, show the calendar anyway.
+    var book = document.getElementById('book');
+    var started = Date.now();
+    (function waitForCalendar() {
+      if (frame.style.visibility !== 'hidden' && frame.style.height) {
+        book.classList.remove('loading');
+      } else if (Date.now() - started > 4000) {
         ['opacity', 'visibility', 'pointer-events', 'left', 'position'].forEach(function (p) {
           frame.style.removeProperty(p);
         });
+        book.classList.remove('loading');
+      } else {
+        setTimeout(waitForCalendar, 150);
       }
-    }, 4000);
+    })();
   }
 
   // ---- CTA clicks ----

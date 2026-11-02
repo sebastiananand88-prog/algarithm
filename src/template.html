@@ -16,7 +16,8 @@
   <script>window.SITE = {{config_json}};</script>
   <!-- Meta Pixel: loads only when meta_pixel_id is set in content/shared.json -->
   <script>
-    if (window.SITE.pixelId) {
+    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
+    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -42,7 +43,7 @@
 
   {{vsl}}
 
-  <section class="book" id="book">
+  <section class="book loading" id="book">
     <iframe id="ghl-calendar" class="ghl-calendar" title="Book a call" scrolling="no" data-src="{{calendar_url}}"></iframe>
     <div class="calendar-missing" hidden>Calendar goes here: set calendar_url in content/{{slug}}.json</div>
   </section>
@@ -60,7 +61,6 @@
 
 <footer class="footer">
   <p>© {{year}} {{brand}} · <a href="{{privacy_url}}">Privacy policy</a></p>
-  <p class="legal">Results shown are from specific clients and are not a guarantee of future performance. This site is not part of the Facebook website or Meta Platforms, Inc.</p>
 </footer>
 
 <a class="sticky-cta btn" href="#book" data-cta="sticky">{{cta}} <span aria-hidden="true">→</span></a>

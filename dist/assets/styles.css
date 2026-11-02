@@ -73,7 +73,9 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .video-empty::before { display: none; }
 
 /* calendar */
-.book { position: relative; min-height: 720px; scroll-margin-top: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.12); }
+/* No box of our own: the GHL widget is transparent and draws its own card. */
+.book { position: relative; scroll-margin-top: 16px; }
+.book.loading { min-height: 720px; }
 .ghl-calendar { display: block; width: 100%; min-height: 720px; border: 0; overflow: hidden; }
 .calendar-missing { display: grid; place-items: center; min-height: 720px; padding: 16px; text-align: center; color: var(--muted); font-size: 15px; }
 
@@ -115,7 +117,6 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 /* footer */
 .footer { border-top: 1px solid var(--line); padding: 28px 16px 110px; text-align: center; font-size: 13.5px; color: var(--muted); }
 .footer a { color: var(--ink); }
-.footer .legal { margin: 8px auto 0; font-size: 12px; max-width: 680px; }
 
 /* sticky mobile CTA */
 .sticky-cta {
@@ -128,7 +129,7 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 720px) {
   .header { padding-top: 24px; }
   .logo { height: 80px; }
-  .hero { padding: 28px 0 44px; }
+  .hero { padding: 28px 0 8px; } /* the widget adds its own ~60px top padding on desktop */
   .cases { grid-template-columns: repeat(2, 1fr); gap: 40px 28px; }
   .sticky-cta { display: none; }
   .footer { padding-bottom: 32px; }
@@ -138,3 +139,15 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* privacy policy */
+.policy { max-width: 720px; margin: 0 auto; padding: 32px 0 96px; }
+.policy h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.055em; }
+.policy-updated { margin-top: 10px; color: var(--muted); font-size: 14px; }
+.policy h2 { margin-top: 40px; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; }
+.policy h3 { margin: 22px 0 0; font-size: 1.05rem; font-weight: 700; }
+.policy p, .policy ul { margin-top: 12px; }
+.policy ul { padding-left: 22px; }
+.policy li + li { margin-top: 6px; }
+.policy a { color: var(--blue); }
+.policy code { font-size: 0.9em; }

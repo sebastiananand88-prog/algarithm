@@ -16,7 +16,8 @@
   <script>window.SITE = {"page": "hair-loss-clinics", "pixelId": ""};</script>
   <!-- Meta Pixel: loads only when meta_pixel_id is set in content/shared.json -->
   <script>
-    if (window.SITE.pixelId) {
+    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
+    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -42,7 +43,7 @@
 
   
 
-  <section class="book" id="book">
+  <section class="book loading" id="book">
     <iframe id="ghl-calendar" class="ghl-calendar" title="Book a call" scrolling="no" data-src="https://api.leadconnectorhq.com/widget/booking/45OiW2Ignt61R8DdWY1i"></iframe>
     <div class="calendar-missing" hidden>Calendar goes here: set calendar_url in content/hair-loss-clinics.json</div>
   </section>
@@ -59,8 +60,7 @@
 </main>
 
 <footer class="footer">
-  <p>© 2026 Algarithm · <a href="#">Privacy policy</a></p>
-  <p class="legal">Results shown are from specific clients and are not a guarantee of future performance. This site is not part of the Facebook website or Meta Platforms, Inc.</p>
+  <p>© 2026 Algarithm · <a href="/privacy/">Privacy policy</a></p>
 </footer>
 
 <a class="sticky-cta btn" href="#book" data-cta="sticky">Book your growth call <span aria-hidden="true">→</span></a>

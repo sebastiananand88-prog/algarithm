@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Algarithm | Book Your 1-on-1 Growth Call</title>
-  <meta name="description" content="The proven system med spas use to add an extra $30K⁠–⁠$100K+/month. We only take one med spa per area.">
+  <meta name="description" content="The proven system aesthetics clinics use to add an extra $30K⁠–⁠$100K+/month. We only take one aesthetics clinic per area.">
   <meta property="og:title" content="Algarithm | Book Your 1-on-1 Growth Call">
-  <meta property="og:description" content="The proven system med spas use to add an extra $30K⁠–⁠$100K+/month. We only take one med spa per area.">
+  <meta property="og:description" content="The proven system aesthetics clinics use to add an extra $30K⁠–⁠$100K+/month. We only take one aesthetics clinic per area.">
   <meta name="theme-color" content="#e4e2dd">
   <link rel="icon" href="../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,8 @@
   <script>window.SITE = {"page": "aesthetic-clinics", "pixelId": ""};</script>
   <!-- Meta Pixel: loads only when meta_pixel_id is set in content/shared.json -->
   <script>
-    if (window.SITE.pixelId) {
+    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
+    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -35,21 +36,21 @@
 
 <main>
   <section class="hero">
-    <h1>Book your 1-on-1 call &amp; get results <em>unheard of</em> in the med spa space</h1>
-    <h2 class="subhead">The Proven System Med Spas Use To Add An Extra $30K⁠–⁠$100K+/Month</h2>
-    <p class="sub">Book your growth call and we&#x27;ll show you exactly how to do it in your market. We only take one med spa per area.</p>
+    <h1>Book your 1-on-1 call &amp; get results <em>unheard of</em> in the aesthetics space</h1>
+    <h2 class="subhead">The Proven System Aesthetics Clinics Use To Add An Extra $30K⁠–⁠$100K+/Month</h2>
+    <p class="sub">Book your growth call and we&#x27;ll show you exactly how to do it in your market. We only take one aesthetics clinic per area.</p>
   </section>
 
   
 
-  <section class="book" id="book">
+  <section class="book loading" id="book">
     <iframe id="ghl-calendar" class="ghl-calendar" title="Book a call" scrolling="no" data-src="https://api.leadconnectorhq.com/widget/booking/45OiW2Ignt61R8DdWY1i"></iframe>
     <div class="calendar-missing" hidden>Calendar goes here: set calendar_url in content/aesthetic-clinics.json</div>
   </section>
 
   <section class="proof">
-    <h2>Watch these med spa owners break down exactly how they added $30K⁠–⁠$100K+ in extra monthly revenue</h2>
-    <div class="cases"><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> $40k/mo to $95k/mo in 4 months.</p></article><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> from an empty schedule to fully booked in 60 days.</p></article><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> $25k/mo to $70k/mo in 6 months.</p></article><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> showing up to 70% of every consultation booked.</p></article></div>
+    <h2>Watch these aesthetics clinic owners break down exactly how they added $30K⁠–⁠$100K+ in extra monthly revenue</h2>
+    <div class="cases"><article class="case"><button class="video" style="background-image: url(https://i.ytimg.com/vi/EybnVg3_-xs/hqdefault.jpg)" data-embed="https://www.youtube-nocookie.com/embed/EybnVg3_-xs?autoplay=1&amp;rel=0" data-name="Optident" aria-label="Play Optident video"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><p class="case-result"><strong>Optident:</strong> 7 new Invisalign cases from a single Black Friday open day.</p></article><article class="case"><button class="video" style="background-image: url(https://i.ytimg.com/vi/6YeqNEHH0cU/hqdefault.jpg)" data-embed="https://www.youtube-nocookie.com/embed/6YeqNEHH0cU?autoplay=1&amp;rel=0" data-name="Tomas Clinic" aria-label="Play Tomas Clinic video"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><p class="case-result"><strong>Tomas Clinic:</strong> £22,900 in 20 days with TikTok.</p></article><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> $25k/mo to $70k/mo in 6 months.</p></article><article class="case"><span class="badge-example">Example · replace</span><div class="video video-empty">Video coming soon</div><p class="case-result"><strong>Clinic name:</strong> showing up to 70% of every consultation booked.</p></article></div>
   </section>
 
   <section class="final">
@@ -59,8 +60,7 @@
 </main>
 
 <footer class="footer">
-  <p>© 2026 Algarithm · <a href="#">Privacy policy</a></p>
-  <p class="legal">Results shown are from specific clients and are not a guarantee of future performance. This site is not part of the Facebook website or Meta Platforms, Inc.</p>
+  <p>© 2026 Algarithm · <a href="/privacy/">Privacy policy</a></p>
 </footer>
 
 <a class="sticky-cta btn" href="#book" data-cta="sticky">Book your growth call <span aria-hidden="true">→</span></a>

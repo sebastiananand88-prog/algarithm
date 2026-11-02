@@ -15,7 +15,8 @@
   <!-- Meta Pixel + Schedule event. GHL redirects here after a booking (set this URL in the calendar's form settings).
        If GHL appends a contact or appointment ID, it becomes the eventID so a server-side CAPI Schedule with the same ID deduplicates. -->
   <script>
-    if (window.SITE.pixelId) {
+    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
+    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;

@@ -2,5 +2,9 @@
   "brand": "Algarithm",
   "lang": "en-US",
   "meta_pixel_id": "",
-  "privacy_url": "#"
+  "privacy_url": "/privacy/",
+  "legal_name": "Algarithm",
+  "legal_address": "",
+  "privacy_email": "hello@algarithm.co.uk",
+  "privacy_updated": "November 2, 2026"
 }
