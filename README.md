@@ -6,7 +6,7 @@ Each niche also gets a thank-you page at `/<slug>/booked/`.
     python3 build.py                     # writes dist/<slug>/index.html and dist/<slug>/booked/
     cd dist && python3 -m http.server 8765   # preview at http://localhost:8765/<slug>/
 
-Pages: `aesthetic-clinics`, `hair-loss-clinics`, `insurance`. To deploy, upload `dist/` to Netlify, Vercel or Cloudflare Pages.
+Pages: `dental`, `aesthetic-clinics`, `hair-loss-clinics`. To deploy, upload `dist/` to Netlify, Vercel or Cloudflare Pages.
 
 ## Editing
 - `content/shared.json`: brand, pixel ID, privacy URL
@@ -16,7 +16,7 @@ Pages: `aesthetic-clinics`, `hair-loss-clinics`, `insurance`. To deploy, upload 
   - In `headline`, `*text*` shows in brand blue.
   - Case study `video` and `vsl` take YouTube, Loom or Vimeo links. A YouTube thumbnail is used automatically.
   - Remove `"placeholder": true` once a case study is real.
-- A/B test: copy a content file, change `slug` (e.g. `insurance-vsl`), edit, rebuild, and point an ad set at it.
+- A/B test: copy a content file, change `slug` (e.g. `dental-vsl`), edit, rebuild, and point an ad set at it.
 
 ## Tracking
 - The Meta Pixel loads when `meta_pixel_id` is set. The landing page fires `PageView`, `CTAClick` and `VideoPlay`.

@@ -1,0 +1,22 @@
+{
+  "slug": "dental",
+  "calendar_url": "https://api.leadconnectorhq.com/widget/booking/45OiW2Ignt61R8DdWY1i",
+  "seo_title": "Algarithm | Book Your 1-on-1 Growth Call",
+  "seo_description": "The proven system dental practices use to add an extra $30K–$150K+/month. We only take one practice per area.",
+
+  "claims_placeholder": true,
+  "headline": "The Proven System Dental Practices Use To Add An Extra *$30K–$150K+/Month*",
+  "subhead": "Book your 1-on-1 call & get results unheard of in the dental space",
+  "sub": "We only take one practice per area.",
+  "vsl": "",
+
+  "proof_title": "Watch these dental practice owners break down exactly how they added $30K–$150K+ in extra monthly revenue",
+  "cases": [
+    { "name": "Optident", "result": "7 new Invisalign cases from a single Black Friday open day.", "video": "https://www.youtube.com/watch?v=EybnVg3_-xs" },
+    { "name": "Dental practice", "result": "28 appointments with deposits in 21 days.", "video": "https://www.youtube.com/watch?v=o7R_Ev_mBZI" },
+    { "name": "Tomas Clinic", "result": "£22,900 in 20 days with TikTok.", "video": "https://www.youtube.com/watch?v=6YeqNEHH0cU" },
+    { "placeholder": true, "name": "Practice name", "result": "from 3 to 12 implant cases a month in 90 days.", "video": "" }
+  ],
+
+  "cta": "Book your growth call"
+}

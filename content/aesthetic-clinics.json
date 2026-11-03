@@ -5,15 +5,15 @@
   "seo_description": "The proven system aesthetics clinics use to add an extra $30K–$100K+/month. We only take one aesthetics clinic per area.",
 
   "claims_placeholder": true,
-  "headline": "Book your 1-on-1 call & get results *unheard of* in the aesthetics space",
-  "subhead": "The Proven System Aesthetics Clinics Use To Add An Extra $30K–$100K+/Month",
-  "sub": "Book your growth call and we'll show you exactly how to do it in your market. We only take one aesthetics clinic per area.",
+  "headline": "The Proven System Aesthetics Clinics Use To Add An Extra *$30K–$100K+/Month*",
+  "subhead": "Book your 1-on-1 call & get results unheard of in the aesthetics space",
+  "sub": "We only take one aesthetics clinic per area.",
   "vsl": "",
 
   "proof_title": "Watch these aesthetics clinic owners break down exactly how they added $30K–$100K+ in extra monthly revenue",
   "cases": [
-    { "name": "Optident", "result": "7 new Invisalign cases from a single Black Friday open day.", "video": "https://www.youtube.com/watch?v=EybnVg3_-xs" },
-    { "name": "Tomas Clinic", "result": "£22,900 in 20 days with TikTok.", "video": "https://www.youtube.com/watch?v=6YeqNEHH0cU" },
+    { "placeholder": true, "name": "Clinic name", "result": "$40k/mo to $95k/mo in 4 months.", "video": "" },
+    { "placeholder": true, "name": "Clinic name", "result": "from an empty schedule to fully booked in 60 days.", "video": "" },
     { "placeholder": true, "name": "Clinic name", "result": "$25k/mo to $70k/mo in 6 months.", "video": "" },
     { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
   ],
