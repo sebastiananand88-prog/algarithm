@@ -18,5 +18,18 @@
     { "placeholder": true, "name": "Clinic name", "result": "closing 1 in 3 consultations into a procedure.", "video": "" }
   ],
 
+  "thanks": {
+    "vsl": "",
+    "proof_title": "Hear from hair restoration clinics we've worked with",
+    "cases": [
+      { "placeholder": true, "name": "Clinic name", "result": "$60k/mo to $210k/mo in 5 months.", "video": "" },
+      { "placeholder": true, "name": "Clinic name", "result": "closing 1 in 3 consultations into a procedure.", "video": "" }
+    ],
+    "faqs": [
+      { "q": "Can you compete with cheap overseas clinics?", "a": "We don't try to win on price. Our ads put your surgeons, aftercare and results first, so we attract patients who value those things, and we filter out price shoppers before they reach your calendar." },
+      { "q": "Do you advertise to women as well as men?", "a": "Yes. Female hair loss is under-served and often converts very well. We run separate ads and funnels for each audience." }
+    ]
+  },
+
   "cta": "Book your growth call"
 }

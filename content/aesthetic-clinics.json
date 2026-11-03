@@ -18,5 +18,18 @@
     { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
   ],
 
+  "thanks": {
+    "vsl": "",
+    "proof_title": "Hear from aesthetics clinics we've worked with",
+    "cases": [
+      { "placeholder": true, "name": "Clinic name", "result": "$25k/mo to $70k/mo in 6 months.", "video": "" },
+      { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
+    ],
+    "faqs": [
+      { "q": "Can you advertise Botox® and fillers on Meta?", "a": "Yes, within the rules. Meta restricts ads that promote prescription drugs, so we build campaigns around consultations, skin concerns and results rather than the product itself." },
+      { "q": "Which treatments work best?", "a": "Usually higher-value treatments and packages, such as skin boosters, laser, body contouring and filler packages, because the return per patient justifies the ad spend. We'll recommend a lead offer for your clinic on the call." }
+    ]
+  },
+
   "cta": "Book your growth call"
 }

@@ -94,6 +94,13 @@ def fill(template, tokens, label):
     return out
 
 
+def render_faqs(faqs):
+    return "".join(
+        f'<details class="faq"><summary>{esc(f["q"])}</summary><div class="faq-a">{esc(f["a"])}</div></details>'
+        for f in faqs
+    )
+
+
 def build_page(template, booked, shared, page):
     slug = page["slug"]
     if "REPLACE" in page["calendar_url"]:
@@ -132,8 +139,18 @@ def build_page(template, booked, shared, page):
     # Thank-you page: set it as the calendar's redirect URL in GHL so bookings fire Schedule.
     booked_dir = page_dir / "booked"
     booked_dir.mkdir()
-    (booked_dir / "index.html").write_text(
-        fill(booked, dict(tokens, assets="../../assets"), f"{slug}/booked"), encoding="utf-8")
+    thanks = page["thanks"]
+    if not thanks["vsl"]:
+        warnings.append(f"[{slug}] thank-you page VSL not set (thanks.vsl)")
+    booked_tokens = dict(
+        tokens,
+        assets="../../assets",
+        vsl=render_video(thanks["vsl"], "VSL"),
+        thanks_proof_title=esc(thanks["proof_title"]),
+        thanks_cases=render_cases(page["cases"] + thanks["cases"], slug),
+        faqs=render_faqs(thanks["faqs"] + shared["faqs"]),
+    )
+    (booked_dir / "index.html").write_text(fill(booked, booked_tokens, f"{slug}/booked"), encoding="utf-8")
     return f"dist/{slug}/index.html  +  dist/{slug}/booked/"
 
 
@@ -180,7 +197,7 @@ def main():
         print(f"  {line}")
     if warnings:
         print("\nBefore you launch ads:")
-        for w in warnings:
+        for w in dict.fromkeys(warnings):  # landing + thank-you pages share case studies
             print(f"  ! {w}")
 
 

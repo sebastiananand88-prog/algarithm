@@ -6,5 +6,43 @@
   "legal_name": "Algarithm",
   "legal_address": "",
   "privacy_email": "hello@algarithm.co.uk",
-  "privacy_updated": "November 2, 2026"
+  "privacy_updated": "November 2, 2026",
+  "faqs": [
+    {
+      "q": "What happens on the call?",
+      "a": "It's a 30-minute call with one of our founders. We'll look at where your new patients come from today, your numbers and your market, then show you exactly how we'd grow it. If we're not the right fit, we'll tell you."
+    },
+    {
+      "q": "What should I prepare?",
+      "a": "A rough idea of your monthly revenue, what you spend on marketing now, and how many new patients you could take on each month. That's all we need to give you real numbers."
+    },
+    {
+      "q": "Who should be on the call?",
+      "a": "The owner or whoever makes decisions about marketing. That way we can answer every question and you won't have to relay anything afterwards."
+    },
+    {
+      "q": "Is there any obligation?",
+      "a": "No. The call is free and there's no pressure to sign up. Most people find it useful even if we never work together."
+    },
+    {
+      "q": "How much does it cost?",
+      "a": "It depends on your market and how fast you want to grow. We'll walk you through pricing on the call once we understand your goals."
+    },
+    {
+      "q": "Why do you only work with one practice or clinic per area?",
+      "a": "So we never compete against ourselves for the same patients. When we work with you, your competitors down the road can't hire us."
+    },
+    {
+      "q": "How quickly will I see results?",
+      "a": "Most clients see their first leads within days of launch. Results keep improving over the first 4–6 weeks as Meta learns which leads actually book and pay."
+    },
+    {
+      "q": "What about HIPAA?",
+      "a": "We don't send treatment or health details to Meta. Events contain only hashed contact details and a value, and we review the setup with you before anything goes live."
+    },
+    {
+      "q": "What if I need to reschedule?",
+      "a": "Use the link in your confirmation email or text to pick a new time."
+    }
+  ]
 }

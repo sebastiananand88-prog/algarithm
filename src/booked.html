@@ -39,13 +39,28 @@
 <main>
   <section class="thanks">
     <h1>You're <em>booked in</em>.</h1>
-    <p>Check your email and texts for the confirmation. We'll come to the call with ideas specific to your market.</p>
+    <p class="subhead">Watch this short video before your call</p>
+    <p class="sub">It explains how we work, so we can spend the call on your numbers and your market.</p>
+  </section>
+
+  <section class="vsl">{{vsl}}</section>
+
+  <section class="proof">
+    <h2>{{thanks_proof_title}}</h2>
+    <div class="cases">{{thanks_cases}}</div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faqs">{{faqs}}</div>
   </section>
 </main>
 
 <footer class="footer">
   <p>© {{year}} {{brand}} · <a href="{{privacy_url}}">Privacy policy</a></p>
 </footer>
+
+<script src="{{assets}}/main.js" defer></script>
 
 </body>
 </html>

@@ -21,8 +21,10 @@
   // UTMs and fbclid from the Meta ad URL are passed into the booking widget so GHL
   // records the campaign / ad set / ad on the contact.
   var frame = document.querySelector('.ghl-calendar');
-  var calUrl = frame.getAttribute('data-src');
-  if (!calUrl || calUrl.indexOf('REPLACE') !== -1) {
+  var calUrl = frame && frame.getAttribute('data-src');
+  if (!frame) {
+    // Thank-you page: no calendar.
+  } else if (!calUrl || calUrl.indexOf('REPLACE') !== -1) {
     frame.hidden = true;
     document.querySelector('.calendar-missing').hidden = false;
   } else {
@@ -79,7 +81,7 @@
   // ---- Sticky mobile CTA: visible once the calendar is scrolled past ----
   var sticky = document.querySelector('.sticky-cta');
   var book = document.getElementById('book');
-  if ('IntersectionObserver' in window) {
+  if (sticky && book && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {
       var e0 = en[0];
       sticky.classList.toggle('show', !e0.isIntersecting && e0.boundingClientRect.top < 0);

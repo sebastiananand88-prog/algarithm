@@ -18,5 +18,18 @@
     { "placeholder": true, "name": "Practice name", "result": "from 3 to 12 implant cases a month in 90 days.", "video": "" }
   ],
 
+  "thanks": {
+    "vsl": "",
+    "proof_title": "Hear from dental practices we've worked with",
+    "cases": [
+      { "placeholder": true, "name": "Practice name", "result": "$40k/mo to $120k/mo in implant and Invisalign cases in 5 months.", "video": "" },
+      { "placeholder": true, "name": "Practice name", "result": "booked out 3 weeks ahead within 60 days.", "video": "" }
+    ],
+    "faqs": [
+      { "q": "Which treatments do you promote?", "a": "We focus on high-value treatments where one new patient is worth thousands, such as implants, full-arch, Invisalign and veneers. We'll recommend which to lead with in your market on the call." },
+      { "q": "Will this work with my practice management software?", "a": "Almost certainly. We connect bookings and outcomes from your CRM or practice management system back to Meta, either directly or through webhooks. We'll confirm what you use on the call." }
+    ]
+  },
+
   "cta": "Book your growth call"
 }
