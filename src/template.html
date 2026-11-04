@@ -14,19 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{assets}}/styles.css">
   <script>window.SITE = {{config_json}};</script>
-  <!-- Meta Pixel: loads only when meta_pixel_id is set in content/shared.json -->
-  <script>
-    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
-    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', window.SITE.pixelId);
-      fbq('track', 'PageView');
-    }
-  </script>
+{{pixel_script}}
 </head>
 <body>
 
@@ -60,7 +48,7 @@
 </main>
 
 <footer class="footer">
-  <p>© {{year}} {{brand}} · <a href="{{privacy_url}}">Privacy policy</a></p>
+  <p>© {{year}} {{brand}} · <a href="{{privacy_url}}">Privacy policy</a> · <a href="{{terms_url}}">Terms</a></p>
 </footer>
 
 <a class="sticky-cta btn" href="#book" data-cta="sticky">{{cta}} <span aria-hidden="true">→</span></a>

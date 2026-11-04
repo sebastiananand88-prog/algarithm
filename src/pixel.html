@@ -1,0 +1,25 @@
+  <!-- Meta Pixel. Skipped for Global Privacy Control; held until consent for visitors in a
+       European timezone (UK/EEA). See section 6 of the privacy policy. -->
+  <script>
+    (function () {
+      var S = window.SITE;
+      S.loadPixel = function () {
+        if (S.pixelLoaded) return;
+        S.pixelLoaded = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', S.pixelId);
+        fbq('track', 'PageView');
+        if (S.afterPixel) S.afterPixel();
+      };
+      if (!S.pixelId || navigator.globalPrivacyControl) return;
+      var tz = '', choice = null;
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      try { choice = localStorage.getItem('algarithm-consent'); } catch (e) {}
+      if (!/^Europe\//.test(tz) || choice === 'granted') S.loadPixel();
+      else if (!choice) S.needsConsent = true;
+    })();
+  </script>

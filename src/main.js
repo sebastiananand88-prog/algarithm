@@ -58,6 +58,23 @@
     })();
   }
 
+  // ---- Cookie consent (UK/EEA timezones only; see the pixel snippet) ----
+  if (cfg.needsConsent) {
+    var bar = document.createElement('div');
+    bar.className = 'consent';
+    bar.innerHTML = '<p>We use cookies to measure our ads. See our <a href="/privacy/">privacy policy</a>.</p>' +
+      '<div class="consent-actions"><button type="button" class="consent-no" data-choice="denied">Decline</button>' +
+      '<button type="button" class="btn consent-yes" data-choice="granted">Accept</button></div>';
+    bar.addEventListener('click', function (e) {
+      var choice = e.target.getAttribute && e.target.getAttribute('data-choice');
+      if (!choice) return;
+      try { localStorage.setItem('algarithm-consent', choice); } catch (err) {}
+      if (choice === 'granted') cfg.loadPixel();
+      bar.remove();
+    });
+    document.body.appendChild(bar);
+  }
+
   // ---- CTA clicks ----
   document.querySelectorAll('[data-cta]').forEach(function (el) {
     el.addEventListener('click', function () {

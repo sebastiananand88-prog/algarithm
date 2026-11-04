@@ -129,6 +129,8 @@ def build_page(template, booked, shared, page):
         "cases": render_cases(page["cases"], slug),
         "cta": esc(page["cta"]),
         "privacy_url": esc(shared["privacy_url"]),
+        "terms_url": esc(shared["terms_url"]),
+        "pixel_script": (SRC / "pixel.html").read_text(),
         "year": "2026",
     }
 
@@ -170,24 +172,36 @@ def main():
     shutil.copytree(SRC / "img", DIST / "assets" / "img")
 
     # Privacy policy, linked from every page footer.
-    if shared["legal_name"] == shared["brand"] or not shared["legal_address"]:
-        warnings.append("[all] privacy policy: set legal_name (registered company name) and legal_address in shared.json")
-    address = f" Our address is {esc(shared['legal_address'])}." if shared["legal_address"] else ""
     privacy_tokens = {
         "lang": shared["lang"],
         "brand": esc(shared["brand"]),
         "assets": "../assets",
         "legal_name": esc(shared["legal_name"]),
-        "legal_address": address,
+        "site_domain": esc(shared["site_domain"]),
         "privacy_email": esc(shared["privacy_email"]),
         "privacy_updated": esc(shared["privacy_updated"]),
+        "privacy_url": esc(shared["privacy_url"]),
+        "terms_url": esc(shared["terms_url"]),
         "year": "2026",
     }
     (DIST / "privacy").mkdir()
     (DIST / "privacy" / "index.html").write_text(
         fill((SRC / "privacy.html").read_text(), privacy_tokens, "privacy"), encoding="utf-8")
 
-    built = ["dist/privacy/index.html"]
+    # Terms and conditions (includes the SMS program terms used for A2P registration).
+    if not shared["company_number"]:
+        warnings.append("[all] terms: set company_number in shared.json once Algarithm is incorporated")
+    details = f" (company number {esc(shared['company_number'])})" if shared["company_number"] else ""
+    terms_tokens = dict(
+        privacy_tokens,
+        terms_updated=esc(shared["terms_updated"]),
+        company_details=details,
+    )
+    (DIST / "terms").mkdir()
+    (DIST / "terms" / "index.html").write_text(
+        fill((SRC / "terms.html").read_text(), terms_tokens, "terms"), encoding="utf-8")
+
+    built = ["dist/privacy/index.html", "dist/terms/index.html"]
     for path in sorted(CONTENT.glob("*.json")):
         if path.name != "shared.json":
             built.append(build_page(template, booked, shared, json.loads(path.read_text())))

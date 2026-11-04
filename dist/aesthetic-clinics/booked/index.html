@@ -12,23 +12,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/styles.css">
   <script>window.SITE = {"page": "aesthetic-clinics", "pixelId": ""};</script>
-  <!-- Meta Pixel + Schedule event. GHL redirects here after a booking (set this URL in the calendar's form settings).
-       If GHL appends a contact or appointment ID, it becomes the eventID so a server-side CAPI Schedule with the same ID deduplicates. -->
   <script>
-    // Skip the pixel for visitors sending Global Privacy Control (see the privacy policy).
-    if (window.SITE.pixelId && !navigator.globalPrivacyControl) {
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', window.SITE.pixelId);
-      fbq('track', 'PageView');
+    // Booking conversion. GHL redirects here after a booking (set this page as the calendar's redirect URL).
+    // If GHL appends an appointment or contact ID, it becomes the eventID so a server-side CAPI
+    // Schedule event with the same ID deduplicates.
+    window.SITE.afterPixel = function () {
       var q = new URLSearchParams(location.search);
       var id = q.get('appointment_id') || q.get('contact_id') || String(Date.now()) + Math.random().toString(36).slice(2, 8);
       fbq('track', 'Schedule', { content_name: window.SITE.page }, { eventID: 'schedule_' + id });
-    }
+    };
   </script>
+  <!-- Meta Pixel. Skipped for Global Privacy Control; held until consent for visitors in a
+       European timezone (UK/EEA). See section 6 of the privacy policy. -->
+  <script>
+    (function () {
+      var S = window.SITE;
+      S.loadPixel = function () {
+        if (S.pixelLoaded) return;
+        S.pixelLoaded = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', S.pixelId);
+        fbq('track', 'PageView');
+        if (S.afterPixel) S.afterPixel();
+      };
+      if (!S.pixelId || navigator.globalPrivacyControl) return;
+      var tz = '', choice = null;
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      try { choice = localStorage.getItem('algarithm-consent'); } catch (e) {}
+      if (!/^Europe\//.test(tz) || choice === 'granted') S.loadPixel();
+      else if (!choice) S.needsConsent = true;
+    })();
+  </script>
+
 </head>
 <body>
 
@@ -57,7 +76,7 @@
 </main>
 
 <footer class="footer">
-  <p>© 2026 Algarithm · <a href="/privacy/">Privacy policy</a></p>
+  <p>© 2026 Algarithm · <a href="/privacy/">Privacy policy</a> · <a href="/terms/">Terms</a></p>
 </footer>
 
 <script src="../../assets/main.js" defer></script>

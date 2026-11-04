@@ -3,10 +3,13 @@
   "lang": "en-US",
   "meta_pixel_id": "",
   "privacy_url": "/privacy/",
+  "terms_url": "/terms/",
   "legal_name": "Algarithm",
-  "legal_address": "",
-  "privacy_email": "hello@algarithm.co.uk",
-  "privacy_updated": "November 2, 2026",
+  "company_number": "",
+  "privacy_email": "info@algarithm.co.uk",
+  "privacy_updated": "4 November 2026",
+  "terms_updated": "4 November 2026",
+  "site_domain": "algarithm.vercel.app",
   "faqs": [
     {
       "q": "What happens on the call?",
