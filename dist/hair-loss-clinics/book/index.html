@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pick a time | Algarithm</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#e4e2dd">
+  <link rel="icon" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script>window.SITE = {"page": "hair-loss-clinics", "pixelId": ""};</script>
+  <script>
+    // Lead conversion. The landing page's GHL form redirects here on submit (set this page as the
+    // form's redirect URL). If GHL appends a contact ID, it becomes the eventID so a server-side
+    // CAPI Lead event with the same ID deduplicates.
+    window.SITE.afterPixel = function () {
+      var q = new URLSearchParams(location.search);
+      var id = q.get('contact_id') || String(Date.now()) + Math.random().toString(36).slice(2, 8);
+      fbq('track', 'Lead', { content_name: window.SITE.page }, { eventID: 'lead_' + id });
+    };
+  </script>
+  <!-- Meta Pixel. Skipped for Global Privacy Control; held until consent for visitors in a
+       European timezone (UK/EEA). See section 6 of the privacy policy. -->
+  <script>
+    (function () {
+      var S = window.SITE;
+      S.loadPixel = function () {
+        if (S.pixelLoaded) return;
+        S.pixelLoaded = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', S.pixelId);
+        fbq('track', 'PageView');
+        if (S.afterPixel) S.afterPixel();
+      };
+      if (!S.pixelId || navigator.globalPrivacyControl) return;
+      var tz = '', choice = null;
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      try { choice = localStorage.getItem('algarithm-consent'); } catch (e) {}
+      if (!/^Europe\//.test(tz) || choice === 'granted') S.loadPixel();
+      else if (!choice) S.needsConsent = true;
+    })();
+  </script>
+
+</head>
+<body>
+
+<header class="header">
+  <img class="logo" src="../../assets/img/logo.png" alt="Algarithm" width="820" height="360">
+</header>
+
+<main>
+  <section class="thanks">
+    <p class="step">Last step</p>
+    <h1>Pick a time for your <em>growth call</em></h1>
+    <p class="sub">30 minutes with one of our founders. Choose a time that suits you below.</p>
+  </section>
+
+  <section class="book book-cal loading" id="book">
+    <iframe class="ghl-embed ghl-calendar" title="Book your growth call" scrolling="no" data-src="https://api.leadconnectorhq.com/widget/booking/Pj8nF7fEYpaN7izGwOgx"></iframe>
+    <div class="embed-missing" hidden>Calendar goes here: set calendar_url in content/hair-loss-clinics.json</div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Algarithm · <a href="/privacy/">Privacy policy</a> · <a href="/terms/">Terms</a></p>
+</footer>
+
+<script src="../../assets/main.js" defer></script>
+</body>
+</html>

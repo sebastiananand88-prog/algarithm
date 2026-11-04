@@ -71,17 +71,22 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .video-empty { cursor: default; background: #1a1a19; color: rgba(255, 255, 255, 0.6); font-size: 14px; }
 .video-empty::before { display: none; }
 
-/* calendar */
-/* No box of our own: the GHL widget is transparent and draws its own card. */
+/* lead form / calendar */
+/* No box of our own: the GHL embed draws its own card. */
 .book { position: relative; scroll-margin-top: 16px; }
-.book.loading { min-height: 720px; }
-.ghl-calendar { display: block; width: 100%; min-height: 720px; border: 0; overflow: hidden; }
-.calendar-missing { display: grid; place-items: center; min-height: 720px; padding: 16px; text-align: center; color: var(--muted); font-size: 15px; }
+.book.loading { min-height: 802px; }
+.ghl-embed { display: block; width: 100%; border: 0; overflow: hidden; }
+.ghl-form { min-height: 802px; }
+.ghl-calendar { min-height: 720px; }
+.book-cal.loading { min-height: 720px; }
+.embed-missing { display: grid; place-items: center; min-height: 720px; padding: 16px; text-align: center; color: var(--muted); font-size: 15px; }
 
 /* thank-you page */
 .thanks { max-width: 820px; margin: 0 auto; padding: 20px 0 32px; text-align: center; }
 .thanks h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.055em; }
 .thanks h1 em { font-style: normal; color: var(--blue); }
+.step { font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.book-cal { padding-bottom: 64px; }
 
 /* faq */
 .faq-section { max-width: 820px; margin: 0 auto; padding: 72px 0 96px; }

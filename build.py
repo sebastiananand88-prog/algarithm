@@ -101,10 +101,10 @@ def render_faqs(faqs):
     )
 
 
-def build_page(template, booked, shared, page):
+def build_page(template, book, booked, shared, page):
     slug = page["slug"]
-    if "REPLACE" in page["calendar_url"]:
-        warnings.append(f"[{slug}] calendar_url is still a placeholder (GHL calendar → Embed → booking widget URL)")
+    if "REPLACE" in page["form_url"]:
+        warnings.append(f"[{slug}] form_url is still a placeholder (GHL form → Embed → iframe src)")
 
     if page.get("claims_placeholder"):
         warnings.append(f"[{slug}] $ ranges in subhead / proof_title are placeholders — set them from real client results")
@@ -118,7 +118,10 @@ def build_page(template, booked, shared, page):
         "assets": "../assets",
         "config_json": json.dumps(config),
         "slug": slug,
+        "form_url": esc(page["form_url"]),
         "calendar_url": esc(page["calendar_url"]),
+        "form_id": esc(page["form_url"].rstrip("/").rsplit("/", 1)[-1]),
+        "form_name": esc(page["form_name"]),
         "page_title": esc(page["seo_title"]),
         "page_description": esc(page["seo_description"]),
         "headline": rich(page["headline"]),
@@ -138,6 +141,12 @@ def build_page(template, booked, shared, page):
     page_dir.mkdir(parents=True, exist_ok=True)
     (page_dir / "index.html").write_text(fill(template, tokens, slug), encoding="utf-8")
 
+    # Calendar page: set it as the form's on-submit redirect in GHL so submissions fire Lead.
+    book_dir = page_dir / "book"
+    book_dir.mkdir()
+    (book_dir / "index.html").write_text(
+        fill(book, dict(tokens, assets="../../assets"), f"{slug}/book"), encoding="utf-8")
+
     # Thank-you page: set it as the calendar's redirect URL in GHL so bookings fire Schedule.
     booked_dir = page_dir / "booked"
     booked_dir.mkdir()
@@ -153,12 +162,13 @@ def build_page(template, booked, shared, page):
         faqs=render_faqs(thanks["faqs"] + shared["faqs"]),
     )
     (booked_dir / "index.html").write_text(fill(booked, booked_tokens, f"{slug}/booked"), encoding="utf-8")
-    return f"dist/{slug}/index.html  +  dist/{slug}/booked/"
+    return f"dist/{slug}/index.html  +  book/  +  booked/"
 
 
 def main():
     shared = json.loads((CONTENT / "shared.json").read_text())
     template = (SRC / "template.html").read_text()
+    book = (SRC / "book.html").read_text()
     booked = (SRC / "booked.html").read_text()
 
     if not shared["meta_pixel_id"]:
@@ -204,7 +214,11 @@ def main():
     built = ["dist/privacy/index.html", "dist/terms/index.html"]
     for path in sorted(CONTENT.glob("*.json")):
         if path.name != "shared.json":
-            built.append(build_page(template, booked, shared, json.loads(path.read_text())))
+            built.append(build_page(template, book, booked, shared, json.loads(path.read_text())))
+
+    forms = [json.loads(p.read_text())["form_url"] for p in CONTENT.glob("*.json") if p.name != "shared.json"]
+    if len(set(forms)) < len(forms):
+        warnings.append("[all] pages share one GHL form, so it can only redirect to one /book/ page — duplicate it per niche")
 
     print("Built:")
     for line in built:

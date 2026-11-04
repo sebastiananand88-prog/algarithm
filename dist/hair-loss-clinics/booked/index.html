@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="../../assets/styles.css">
   <script>window.SITE = {"page": "hair-loss-clinics", "pixelId": ""};</script>
   <script>
-    // Booking conversion. GHL redirects here after a booking (set this page as the calendar's redirect URL).
-    // If GHL appends an appointment or contact ID, it becomes the eventID so a server-side CAPI
-    // Schedule event with the same ID deduplicates.
+    // Booking conversion. The niche calendar on /book/ redirects here after a booking (set this page as
+    // the calendar's redirect URL). If GHL appends an appointment or contact ID, it becomes the eventID
+    // so a server-side CAPI Schedule event with the same ID deduplicates.
     window.SITE.afterPixel = function () {
       var q = new URLSearchParams(location.search);
       var id = q.get('appointment_id') || q.get('contact_id') || String(Date.now()) + Math.random().toString(36).slice(2, 8);
