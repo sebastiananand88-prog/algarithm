@@ -72,7 +72,12 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .video-empty::before { display: none; }
 
 /* lead form / calendar */
-.typeform-embed { width: 100%; min-height: 600px; }
+.typeform-embed {
+  width: 100%; height: 600px; overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.18); border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 24px 70px -20px rgba(0, 0, 0, 0.28);
+}
+.typeform-embed .tf-v1-widget, .typeform-embed iframe { height: 100% !important; }
 /* No box of our own: the GHL embed draws its own card. */
 .book { position: relative; scroll-margin-top: 16px; }
 .book.loading { min-height: 802px; }
