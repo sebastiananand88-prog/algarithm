@@ -101,9 +101,35 @@ def render_faqs(faqs):
     )
 
 
+GHL_FORM = """    <iframe class="ghl-embed ghl-form" data-src="{url}" id="inline-{id}" title="{name}"
+      style="width:100%;border:none;border-radius:8px"
+      data-layout="{{'id':'INLINE'}}" data-trigger-type="alwaysShow" data-trigger-value=""
+      data-activation-type="alwaysActivated" data-activation-value=""
+      data-deactivation-type="neverDeactivate" data-deactivation-value=""
+      data-form-name="{name}" data-height="802" data-layout-iframe-id="inline-{id}"
+      data-form-id="{id}" data-cookie-consent="true" data-cookie-consent-provider="auto"></iframe>
+    <div class="embed-missing" hidden>Form goes here: set form_url in content/{slug}.json</div>"""
+
+# Typeform live embed. URL params listed in transitive-search-params, plus `niche`, are passed into
+# the Typeform's hidden fields (create hidden fields with these names in Typeform). One Typeform can
+# serve every niche: set its completion redirect to https://<domain>/{{hidden:niche}}/book/?...
+TYPEFORM = """    <div class="typeform-embed" data-tf-live="{id}" data-tf-hidden="niche={slug}"
+      data-tf-transitive-search-params="utm_source,utm_medium,utm_campaign,utm_content,utm_term,fbclid"></div>
+    <script src="https://embed.typeform.com/next/embed.js"></script>"""
+
+
+def render_lead_embed(page):
+    """The landing page's lead form: a Typeform if typeform_id is set, otherwise the GHL form."""
+    if page.get("typeform_id"):
+        return TYPEFORM.format(id=esc(page["typeform_id"]), slug=esc(page["slug"])), " typeform"
+    url = page["form_url"]
+    return GHL_FORM.format(url=esc(url), id=esc(url.rstrip("/").rsplit("/", 1)[-1]),
+                           name=esc(page["form_name"]), slug=page["slug"]), " loading"
+
+
 def build_page(template, book, booked, shared, page):
     slug = page["slug"]
-    if "REPLACE" in page["form_url"]:
+    if not page.get("typeform_id") and "REPLACE" in page["form_url"]:
         warnings.append(f"[{slug}] form_url is still a placeholder (GHL form → Embed → iframe src)")
 
     if page.get("claims_placeholder"):
@@ -112,16 +138,16 @@ def build_page(template, book, booked, shared, page):
     config = {"page": slug, "pixelId": shared["meta_pixel_id"]}
     vsl = f'<section class="vsl">{render_video(page["vsl"], "VSL")}</section>' if page.get("vsl") else ""
 
+    lead_embed, book_class = render_lead_embed(page)
     tokens = {
         "lang": shared["lang"],
         "brand": esc(shared["brand"]),
         "assets": "../assets",
         "config_json": json.dumps(config),
         "slug": slug,
-        "form_url": esc(page["form_url"]),
         "calendar_url": esc(page["calendar_url"]),
-        "form_id": esc(page["form_url"].rstrip("/").rsplit("/", 1)[-1]),
-        "form_name": esc(page["form_name"]),
+        "lead_embed": lead_embed,
+        "book_class": book_class,
         "page_title": esc(page["seo_title"]),
         "page_description": esc(page["seo_description"]),
         "headline": rich(page["headline"]),
@@ -216,7 +242,8 @@ def main():
         if path.name != "shared.json":
             built.append(build_page(template, book, booked, shared, json.loads(path.read_text())))
 
-    forms = [json.loads(p.read_text())["form_url"] for p in CONTENT.glob("*.json") if p.name != "shared.json"]
+    pages = [json.loads(p.read_text()) for p in CONTENT.glob("*.json") if p.name != "shared.json"]
+    forms = [p["form_url"] for p in pages if not p.get("typeform_id")]  # a shared Typeform routes by its niche hidden field
     if len(set(forms)) < len(forms):
         warnings.append("[all] pages share one GHL form, so it can only redirect to one /book/ page — duplicate it per niche")
 

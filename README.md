@@ -3,7 +3,7 @@
 One simple page per niche. The structure is: logo → headline → one-line sub → GoHighLevel lead form → video testimonials → "Become our next success story" button.
 Each niche has three steps:
 
-    /<slug>/         landing page with the GHL lead form
+    /<slug>/         landing page with the lead form (Typeform if `typeform_id` is set, else GHL)
     /<slug>/book/    "Last step": the niche's GHL calendar   (form redirects here, fires Lead)
     /<slug>/booked/  thank-you page with VSL, cases and FAQs (calendar redirects here, fires Schedule)
 
@@ -14,7 +14,7 @@ Pages: `dental`, `aesthetic-clinics`, `hair-loss-clinics`. To deploy, upload `di
 
 ## Editing
 - `content/shared.json`: brand, pixel ID, privacy URL
-- `content/<slug>.json`: headline, sub, `form_url`, `calendar_url`, optional `vsl` video, case studies, thank-you page content
+- `content/<slug>.json`: headline, sub, `typeform_id` (or GHL `form_url`), `calendar_url`, optional `vsl` video, case studies, thank-you page content
   - `form_url` is the iframe `src` from GHL → Sites → Forms → your form → Embed, e.g.
     `https://api.leadconnectorhq.com/widget/form/<formId>`. It's embedded inline. Use a separate form per niche so each can redirect to its own `/book/` page.
   - `calendar_url` is the booking widget URL from GHL → Calendars → Share, e.g. `https://api.leadconnectorhq.com/widget/booking/<calendarId>`.
@@ -39,3 +39,12 @@ Pages: `dental`, `aesthetic-clinics`, `hair-loss-clinics`. To deploy, upload `di
   `utm_source=meta&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}`
 
 `build.py` prints a launch checklist of anything still set to placeholder content.
+
+## Typeform
+All niches share one Typeform. Each page passes a hidden field `niche` (its slug) plus any UTMs / `fbclid`
+from the ad URL. In Typeform, add hidden fields `niche`, `utm_source`, `utm_medium`, `utm_campaign`,
+`utm_content`, `utm_term`, `fbclid`, and set the completion redirect to:
+
+    https://us.algarithm.co.uk/{{hidden:niche}}/book/?first_name={{field:first}}&last_name={{field:last}}&email={{field:email}}
+
+(insert the field references with Typeform's recall picker) so each lead lands on its niche's calendar.

@@ -72,6 +72,7 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .video-empty::before { display: none; }
 
 /* lead form / calendar */
+.typeform-embed { width: 100%; min-height: 600px; }
 /* No box of our own: the GHL embed draws its own card. */
 .book { position: relative; scroll-margin-top: 16px; }
 .book.loading { min-height: 802px; }
