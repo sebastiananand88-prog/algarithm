@@ -41,10 +41,9 @@ Pages: `dental`, `aesthetic-clinics`, `hair-loss-clinics`. To deploy, upload `di
 `build.py` prints a launch checklist of anything still set to placeholder content.
 
 ## Typeform
-All niches share one Typeform. Each page passes a hidden field `niche` (its slug) plus any UTMs / `fbclid`
-from the ad URL. In Typeform, add hidden fields `niche`, `utm_source`, `utm_medium`, `utm_campaign`,
-`utm_content`, `utm_term`, `fbclid`, and set the completion redirect to:
+Each niche has its own Typeform (`typeform_id` in its content file). Each page passes a hidden field `niche`
+(its slug) plus any UTMs / `fbclid` from the ad URL, so add hidden fields `niche`, `utm_source`, `utm_medium`,
+`utm_campaign`, `utm_content`, `utm_term`, `fbclid` in Typeform. Set each form's ending to redirect to its
+niche's calendar page, passing the answers so the calendar is pre-filled (insert them with the `@` recall menu):
 
-    https://us.algarithm.co.uk/{{hidden:niche}}/book/?first_name={{field:first}}&last_name={{field:last}}&email={{field:email}}
-
-(insert the field references with Typeform's recall picker) so each lead lands on its niche's calendar.
+    https://us.algarithm.co.uk/<slug>/book/?first_name=@First Name&last_name=@Last Name&email=@Email&phone=@Phone Number
