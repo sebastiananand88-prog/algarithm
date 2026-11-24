@@ -6,33 +6,33 @@
   "calendar_url": "https://api.leadconnectorhq.com/widget/booking/L1hhhdxYqm0lI5klATxW",
   "seo_title": "Algarithm | Book Your 1-on-1 Growth Call",
   "seo_description": "The proven system aesthetics clinics use to add an extra $30K–$100K+/month. We only take one aesthetics clinic per area.",
-
   "claims_placeholder": true,
   "headline": "The Proven System Aesthetics Clinics Use To Add An Extra *$30K–$100K+/Month*",
   "subhead": "Book your 1-on-1 call & get results unheard of in the aesthetics space",
   "sub": "We only take one aesthetics clinic per area.",
   "vsl": "",
-
-  "proof_title": "Watch these aesthetics clinic owners break down exactly how they added $30K–$100K+ in extra monthly revenue",
+  "proof_title": "Watch this aesthetics clinic owner break down exactly how they added $30K–$100K+ in extra monthly revenue",
   "cases": [
-    { "placeholder": true, "name": "Clinic name", "result": "$40k/mo to $95k/mo in 4 months.", "video": "" },
-    { "placeholder": true, "name": "Clinic name", "result": "from an empty schedule to fully booked in 60 days.", "video": "" },
-    { "placeholder": true, "name": "Clinic name", "result": "$25k/mo to $70k/mo in 6 months.", "video": "" },
-    { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
+    {
+      "name": "HA Lasers",
+      "result": "200+ new patients from Meta ads, and a brand-new second clinic taken from empty days to 70% booked.",
+      "video": "https://drive.google.com/file/d/1cnL3VBkPvk4SQ3mrIFBFFddJHUTp-iHI/view"
+    }
   ],
-
   "thanks": {
     "vsl": "",
     "proof_title": "Hear from aesthetics clinics we've worked with",
-    "cases": [
-      { "placeholder": true, "name": "Clinic name", "result": "$25k/mo to $70k/mo in 6 months.", "video": "" },
-      { "placeholder": true, "name": "Clinic name", "result": "showing up to 70% of every consultation booked.", "video": "" }
-    ],
+    "cases": [],
     "faqs": [
-      { "q": "Can you advertise Botox® and fillers on Meta?", "a": "Yes, within the rules. Meta restricts ads that promote prescription drugs, so we build campaigns around consultations, skin concerns and results rather than the product itself." },
-      { "q": "Which treatments work best?", "a": "Usually higher-value treatments and packages, such as skin boosters, laser, body contouring and filler packages, because the return per patient justifies the ad spend. We'll recommend a lead offer for your clinic on the call." }
+      {
+        "q": "Can you advertise Botox® and fillers on Meta?",
+        "a": "Yes, within the rules. Meta restricts ads that promote prescription drugs, so we build campaigns around consultations, skin concerns and results rather than the product itself."
+      },
+      {
+        "q": "Which treatments work best?",
+        "a": "Usually higher-value treatments and packages, such as skin boosters, laser, body contouring and filler packages, because the return per patient justifies the ad spend. We'll recommend a lead offer for your clinic on the call."
+      }
     ]
   },
-
   "cta": "Book your growth call"
 }

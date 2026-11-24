@@ -6,33 +6,43 @@
   "calendar_url": "https://api.leadconnectorhq.com/widget/booking/45OiW2Ignt61R8DdWY1i",
   "seo_title": "Algarithm | Book Your 1-on-1 Growth Call",
   "seo_description": "The proven system dental practices use to add an extra $30K–$150K+/month. We only take one practice per area.",
-
   "claims_placeholder": true,
   "headline": "The Proven System Dental Practices Use To Add An Extra *$30K–$150K+/Month*",
   "subhead": "Book your 1-on-1 call & get results unheard of in the dental space",
   "sub": "We only take one practice per area.",
   "vsl": "",
-
   "proof_title": "Watch these dental practice owners break down exactly how they added $30K–$150K+ in extra monthly revenue",
   "cases": [
-    { "name": "Optident", "result": "7 new Invisalign cases from a single Black Friday open day.", "video": "https://www.youtube.com/watch?v=EybnVg3_-xs" },
-    { "name": "Dental practice", "result": "28 appointments with deposits in 21 days.", "video": "https://www.youtube.com/watch?v=o7R_Ev_mBZI" },
-    { "name": "Tomas Clinic", "result": "£22,900 in 20 days with TikTok.", "video": "https://www.youtube.com/watch?v=6YeqNEHH0cU" },
-    { "placeholder": true, "name": "Practice name", "result": "from 3 to 12 implant cases a month in 90 days.", "video": "" }
+    {
+      "name": "Dental practice",
+      "result": "28 appointments with deposits in 21 days.",
+      "video": "https://www.youtube.com/watch?v=o7R_Ev_mBZI"
+    },
+    {
+      "name": "Tomas Clinic",
+      "result": "£22,900 in 20 days with TikTok.",
+      "video": "https://www.youtube.com/watch?v=6YeqNEHH0cU"
+    },
+    {
+      "name": "Optident",
+      "result": "7 new Invisalign cases from a single Black Friday open day.",
+      "video": "https://www.youtube.com/watch?v=EybnVg3_-xs"
+    }
   ],
-
   "thanks": {
     "vsl": "",
     "proof_title": "Hear from dental practices we've worked with",
-    "cases": [
-      { "placeholder": true, "name": "Practice name", "result": "$40k/mo to $120k/mo in implant and Invisalign cases in 5 months.", "video": "" },
-      { "placeholder": true, "name": "Practice name", "result": "booked out 3 weeks ahead within 60 days.", "video": "" }
-    ],
+    "cases": [],
     "faqs": [
-      { "q": "Which treatments do you promote?", "a": "We focus on high-value treatments where one new patient is worth thousands, such as implants, full-arch, Invisalign and veneers. We'll recommend which to lead with in your market on the call." },
-      { "q": "Will this work with my practice management software?", "a": "Almost certainly. We connect bookings and outcomes from your CRM or practice management system back to Meta, either directly or through webhooks. We'll confirm what you use on the call." }
+      {
+        "q": "Which treatments do you promote?",
+        "a": "We focus on high-value treatments where one new patient is worth thousands, such as implants, full-arch, Invisalign and veneers. We'll recommend which to lead with in your market on the call."
+      },
+      {
+        "q": "Will this work with my practice management software?",
+        "a": "Almost certainly. We connect bookings and outcomes from your CRM or practice management system back to Meta, either directly or through webhooks. We'll confirm what you use on the call."
+      }
     ]
   },
-
   "cta": "Book your growth call"
 }

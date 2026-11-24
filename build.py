@@ -45,8 +45,22 @@ def youtube_id(url):
     return ""
 
 
+def drive_id(url):
+    """File ID from a Google Drive share link (drive.google.com/file/d/<id>/view)."""
+    u = urlparse(url)
+    if u.netloc == "drive.google.com" and "/file/d/" in u.path:
+        return u.path.split("/file/d/", 1)[1].split("/", 1)[0]
+    return ""
+
+
 def embed_url(url):
-    """Turn a YouTube / Loom / Vimeo share link into an autoplaying embed URL."""
+    """Turn a YouTube / Loom / Vimeo / Google Drive share link into an embed URL.
+
+    Drive videos must be shared with "Anyone with the link" to play.
+    """
+    did = drive_id(url)
+    if did:
+        return f"https://drive.google.com/file/d/{did}/preview"
     vid = youtube_id(url)
     if vid:
         return f"https://www.youtube-nocookie.com/embed/{vid}?autoplay=1&rel=0"
@@ -62,8 +76,10 @@ def embed_url(url):
 def render_video(url, name):
     if not url:
         return '<div class="video video-empty">Video coming soon</div>'
-    vid = youtube_id(url)
-    poster = f' style="background-image: url(https://i.ytimg.com/vi/{vid}/hqdefault.jpg)"' if vid else ""
+    vid, did = youtube_id(url), drive_id(url)
+    thumb = (f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg" if vid
+             else f"https://drive.google.com/thumbnail?id={did}&sz=w1280" if did else "")
+    poster = f' style="background-image: url({thumb})"' if thumb else ""
     return (
         f'<button class="video"{poster} data-embed="{esc(embed_url(url))}" data-name="{esc(name)}" '
         f'aria-label="Play {esc(name)} video">{PLAY}</button>'
@@ -91,6 +107,17 @@ def fill(template, tokens, label):
     leftover = re.findall(r"{{\s*\w+\s*}}", out)
     if leftover:
         raise SystemExit(f"[{label}] unfilled template tokens: {leftover}")
+    return out
+
+
+def unique_cases(cases):
+    """Drop repeats, so thank-you extras never duplicate the landing page's case studies."""
+    seen, out = set(), []
+    for c in cases:
+        key = (c["name"], c["result"], c.get("video", ""))
+        if key not in seen:
+            seen.add(key)
+            out.append(c)
     return out
 
 
@@ -184,7 +211,7 @@ def build_page(template, book, booked, shared, page):
         assets="../../assets",
         vsl=render_video(thanks["vsl"], "VSL"),
         thanks_proof_title=esc(thanks["proof_title"]),
-        thanks_cases=render_cases(page["cases"] + thanks["cases"], slug),
+        thanks_cases=render_cases(unique_cases(page["cases"] + thanks["cases"]), slug),
         faqs=render_faqs(thanks["faqs"] + shared["faqs"]),
     )
     (booked_dir / "index.html").write_text(fill(booked, booked_tokens, f"{slug}/booked"), encoding="utf-8")
