@@ -265,11 +265,16 @@ def main():
         fill((SRC / "terms.html").read_text(), terms_tokens, "terms"), encoding="utf-8")
 
     built = ["dist/privacy/index.html", "dist/terms/index.html"]
-    for path in sorted(CONTENT.glob("*.json")):
-        if path.name != "shared.json":
-            built.append(build_page(template, book, booked, shared, json.loads(path.read_text())))
+    pages = [json.loads(p.read_text()) for p in sorted(CONTENT.glob("*.json")) if p.name != "shared.json"]
+    # Every landing page shows every case study: its own niche's first, then the other niches'.
+    own = {p["slug"]: p["cases"] for p in pages}
+    for page in pages:
+        others = [c for p in pages if p["slug"] != page["slug"] for c in own[p["slug"]]]
+        cases = unique_cases(own[page["slug"]] + others)
+        cases.sort(key=lambda c: bool(c.get("last")))  # "last": true pins a case study to the end on every page
+        page = dict(page, cases=cases)
+        built.append(build_page(template, book, booked, shared, page))
 
-    pages = [json.loads(p.read_text()) for p in CONTENT.glob("*.json") if p.name != "shared.json"]
     forms = [p["form_url"] for p in pages if not p.get("typeform_id")]  # a shared Typeform routes by its niche hidden field
     if len(set(forms)) < len(forms):
         warnings.append("[all] pages share one GHL form, so it can only redirect to one /book/ page — duplicate it per niche")
