@@ -88,15 +88,53 @@
     });
   });
 
-  // ---- Video facades: load the player only when clicked ----
+  // ---- Videos ----
+  // Desktop: a thumbnail facade that swaps in the player (and autoplays) on the first click.
+  // Phones block autoplay with sound in a just-created iframe, so a facade would need two taps.
+  // There we load the real player straight away (lazily, as it nears the screen) so one tap plays.
+  var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+
+  function playerFor(btn, autoplay) {
+    var iframe = document.createElement('iframe');
+    var src = btn.getAttribute('data-embed');
+    if (!autoplay) src = src.replace(/([?&])autoplay=1&?/, '$1').replace(/[?&]$/, '');
+    iframe.src = src;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.title = btn.getAttribute('data-name') || 'Video';
+    return iframe;
+  }
+
+  // YouTube reports play/pause to the page once asked to (needs enablejsapi=1 on the embed).
+  var played = [];
+  window.addEventListener('message', function (e) {
+    if (!/^https:\/\/(www\.)?youtube(-nocookie)?\.com$/.test(e.origin)) return;
+    var d; try { d = JSON.parse(e.data); } catch (err) { return; }
+    var state = d.event === 'onStateChange' ? d.info : d.info && d.info.playerState;
+    var frame = played[d.id];
+    if (state === 1 && frame && !frame.tracked) {
+      frame.tracked = true;
+      trackCustom('VideoPlay', { video: frame.name });
+    }
+  });
+
   document.querySelectorAll('.video[data-embed]').forEach(function (btn) {
+    if (touch) {
+      var iframe = playerFor(btn, false);
+      iframe.loading = 'lazy';
+      var id = played.push({ name: btn.getAttribute('data-name') }) - 1;
+      iframe.addEventListener('load', function () {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: id }), '*');
+      });
+      var box = document.createElement('div');
+      box.className = 'video video-live';
+      box.appendChild(iframe);
+      btn.replaceWith(box);
+      return;
+    }
     btn.addEventListener('click', function () {
-      var iframe = document.createElement('iframe');
-      iframe.src = btn.getAttribute('data-embed');
-      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.allowFullscreen = true;
       btn.innerHTML = '';
-      btn.appendChild(iframe);
+      btn.appendChild(playerFor(btn, true));
       trackCustom('VideoPlay', { video: btn.getAttribute('data-name') });
     }, { once: true });
   });

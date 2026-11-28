@@ -63,7 +63,7 @@ def embed_url(url):
         return f"https://drive.google.com/file/d/{did}/preview"
     vid = youtube_id(url)
     if vid:
-        return f"https://www.youtube-nocookie.com/embed/{vid}?autoplay=1&rel=0"
+        return f"https://www.youtube-nocookie.com/embed/{vid}?autoplay=1&rel=0&playsinline=1&enablejsapi=1"
     u = urlparse(url)
     host = u.netloc.replace("www.", "")
     if host == "loom.com":

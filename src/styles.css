@@ -199,3 +199,5 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 720px) {
   .case:last-child:nth-child(odd):not(:only-child) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 14px); }
 }
+.video-live { cursor: auto; }
+.video-live::before { display: none; }
