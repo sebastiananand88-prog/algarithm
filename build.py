@@ -142,7 +142,7 @@ GHL_FORM = """    <iframe class="ghl-embed ghl-form" data-src="{url}" id="inline
 # serve every niche: set its completion redirect to https://<domain>/{{hidden:niche}}/book/?...
 TYPEFORM = """    <div class="typeform-embed" data-tf-live="{id}" data-tf-hidden="niche={slug}"
       data-tf-transitive-search-params="utm_source,utm_medium,utm_campaign,utm_content,utm_term,fbclid"></div>
-    <script src="https://embed.typeform.com/next/embed.js"></script>"""
+    <script src="https://embed.typeform.com/next/embed.js" defer></script>"""
 
 
 def render_lead_embed(page):
@@ -233,6 +233,7 @@ def main():
     for asset in ("styles.css", "main.js"):
         shutil.copy(SRC / asset, DIST / "assets" / asset)
     shutil.copytree(SRC / "img", DIST / "assets" / "img")
+    shutil.copytree(SRC / "fonts", DIST / "assets" / "fonts")
 
     # Privacy policy, linked from every page footer.
     privacy_tokens = {

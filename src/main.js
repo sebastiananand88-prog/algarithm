@@ -143,12 +143,18 @@
   document.querySelectorAll('.video[data-embed]').forEach(function (btn) {
     var name = btn.getAttribute('data-name');
     if (touch) {
-      var iframe = watch(playerFor(btn, false), name);
-      iframe.loading = 'lazy';
-      var box = document.createElement('div');
-      box.className = 'video video-live';
-      box.appendChild(iframe);
-      btn.replaceWith(box);
+      // Each YouTube player is ~0.5MB+, so swap one in only as its video nears the screen.
+      var swap = function () {
+        var box = document.createElement('div');
+        box.className = 'video video-live';
+        box.appendChild(watch(playerFor(btn, false), name));
+        btn.replaceWith(box);
+      };
+      if (!('IntersectionObserver' in window)) return swap();
+      var io = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { io.disconnect(); swap(); }
+      }, { rootMargin: '400px 0px' });
+      io.observe(btn);
       return;
     }
     btn.addEventListener('click', function () {
