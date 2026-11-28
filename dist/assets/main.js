@@ -105,27 +105,46 @@
     return iframe;
   }
 
-  // YouTube reports play/pause to the page once asked to (needs enablejsapi=1 on the embed).
-  var played = [];
+  // YouTube reports player state to the page once asked to (needs enablejsapi=1 on the embed).
+  // We use it to count real plays and to switch captions off when a video first starts:
+  // YouTube turns them on by itself for some viewers (their account or phone accessibility
+  // settings), and cc_load_policy=0 alone doesn't stop that. Viewers can still turn them back on.
+  var players = [];
+  function command(frame, func, args) {
+    frame.el.contentWindow.postMessage(
+      JSON.stringify({ event: 'command', func: func, args: args || [], id: frame.id, channel: 'widget' }), '*');
+  }
+  function watch(iframe, name) {
+    var frame = { el: iframe, name: name };
+    var id = frame.id = players.push(frame) - 1;
+    // The player only talks back to a page that names its origin and says it's listening.
+    iframe.src += '&origin=' + encodeURIComponent(location.origin);
+    iframe.addEventListener('load', function () {
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: id, channel: 'widget' }), '*');
+    });
+    return iframe;
+  }
   window.addEventListener('message', function (e) {
     if (!/^https:\/\/(www\.)?youtube(-nocookie)?\.com$/.test(e.origin)) return;
     var d; try { d = JSON.parse(e.data); } catch (err) { return; }
+    // Match by sender, not d.id: the player doesn't always echo the id back.
+    var frame = players.filter(function (f) { return f.el.contentWindow === e.source; })[0];
+    if (!frame) return;
     var state = d.event === 'onStateChange' ? d.info : d.info && d.info.playerState;
-    var frame = played[d.id];
-    if (state === 1 && frame && !frame.tracked) {
-      frame.tracked = true;
-      trackCustom('VideoPlay', { video: frame.name });
-    }
+    if (state !== 1 || frame.started) return;
+    // First play: captions can load a moment after playback starts, so switch them off a few times.
+    frame.started = true;
+    [0, 1000, 3000].forEach(function (ms) {
+      setTimeout(function () { command(frame, 'unloadModule', ['captions']); }, ms);
+    });
+    trackCustom('VideoPlay', { video: frame.name });
   });
 
   document.querySelectorAll('.video[data-embed]').forEach(function (btn) {
+    var name = btn.getAttribute('data-name');
     if (touch) {
-      var iframe = playerFor(btn, false);
+      var iframe = watch(playerFor(btn, false), name);
       iframe.loading = 'lazy';
-      var id = played.push({ name: btn.getAttribute('data-name') }) - 1;
-      iframe.addEventListener('load', function () {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: id }), '*');
-      });
       var box = document.createElement('div');
       box.className = 'video video-live';
       box.appendChild(iframe);
@@ -134,8 +153,7 @@
     }
     btn.addEventListener('click', function () {
       btn.innerHTML = '';
-      btn.appendChild(playerFor(btn, true));
-      trackCustom('VideoPlay', { video: btn.getAttribute('data-name') });
+      btn.appendChild(watch(playerFor(btn, true), name));
     }, { once: true });
   });
 

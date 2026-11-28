@@ -57,6 +57,7 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
   position: relative; display: grid; place-items: center;
   width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 1px solid var(--line); cursor: pointer;
   background: #000 center / cover no-repeat;
+  background-clip: padding-box; /* keep the black backdrop out from under the light border */
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
 }
 .video::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.18); transition: background 0.2s; }
